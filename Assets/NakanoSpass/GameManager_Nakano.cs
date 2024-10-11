@@ -20,8 +20,8 @@ public class GameManager_Nakano : MonoBehaviour
     }
     void Judge()//勝敗
     {
-        PlayerManagerScript playermanagerscript = GetComponent<PlayerManagerScript>();//PlayerManagerスクリプトを探す
-        DealerManagerScript dealermanagerscript = GetComponent<DealerManagerScript>();//DealerManagerスクリプトを探す
+        PlayerManager_Gabu playermanagerscript = GetComponent<PlayerManager_Gabu>();//PlayerManagerスクリプトを探す
+        DealerManager_Gabu dealermanagerscript = GetComponent<DealerManager_Gabu>();//DealerManagerスクリプトを探す
         if (PlayerPoint< DealerPoint)//Playerの勝敗を調べる
         {
             Debug.Log("敗北");
