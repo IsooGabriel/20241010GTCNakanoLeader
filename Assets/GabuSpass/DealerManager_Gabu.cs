@@ -1,4 +1,4 @@
-public class Dealer : PlayerClass_Gabu
+public class DealerManager_Gabu : PlayerClass_Gabu
 {
     public readonly int _minPoint = 17;
 
