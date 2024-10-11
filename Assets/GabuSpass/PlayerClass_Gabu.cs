@@ -5,8 +5,8 @@ public class PlayerClass_Gabu : MonoBehaviour
 {
     #region　変数
 
-    private List<int> _a_currentCards = new List<int>();    // カードの配列
-    private int _i_points = 0;                              // カードの合計
+    protected List<int> _a_currentCards = new List<int>();    // カードの配列
+    protected int _i_points = 0;                              // カードの合計
     public bool isIhasAce = false;                          // Aceもってるか
     public TurnManager turnManagare;
     public CardManager cardManager;
