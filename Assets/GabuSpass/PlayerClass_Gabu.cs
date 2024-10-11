@@ -9,4 +9,15 @@ public class PlayerClass_Gabu : MonoBehaviour
     private TurnManager turnManagare;
     private CardManager cardManager;
 
+    public int PointCalculator()
+    {
+        int point = 0;
+        return point;
+    }
+
+    public int PullCard()
+    {
+        int cardNunber = 0;
+        return cardNunber;
+    }
 }
