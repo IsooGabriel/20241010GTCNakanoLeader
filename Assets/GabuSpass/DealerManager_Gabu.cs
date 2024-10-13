@@ -1,9 +1,18 @@
+﻿using TMPro;
+
 public class DealerManager_Gabu : PlayerClass_Gabu
 {
     public readonly int _minPoint = 17;
+    public TextMeshProUGUI tmp;
 
     void Update()
     {
+        tmp.text = "Dealer Point: " + i_points.ToString();
+        if (isIhasAce)
+        {
+            tmp.text += " or " + i_points + 10.ToString();
+        }
+
         if (turnManagare.isPlayerTurn)
         {
             return;

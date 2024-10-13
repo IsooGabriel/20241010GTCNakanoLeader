@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,7 +10,7 @@ public class CloseGame_Gabu : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            obj.SetActive(obj.activeSelf);
+            obj.SetActive(!obj.activeSelf);
         }
     }
 }

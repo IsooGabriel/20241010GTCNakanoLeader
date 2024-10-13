@@ -6,7 +6,7 @@ public class PlayerClass_Gabu : MonoBehaviour
 {
     #region　変数
 
-    protected List<int> _a_currentCards;                        // カードのint配列
+    protected List<int> _a_currentCards = new List<int>();                        // カードのint配列
     protected List<CardScriptableObject> _a_scripts;              // カードのscriptableObject配列
     public int i_points = 0;                                    // カードの合計
     public bool isIhasAce = false;                              // Aceもってるか
@@ -30,6 +30,11 @@ public class PlayerClass_Gabu : MonoBehaviour
     /// <returns></returns>
     public int PointCalculator(int[] cards)
     {
+        if (cards.Length == 0)
+        {
+            return 0;
+        }
+
         int total = 0;
 
         for (int i = 0; i < cards.Length; i++)

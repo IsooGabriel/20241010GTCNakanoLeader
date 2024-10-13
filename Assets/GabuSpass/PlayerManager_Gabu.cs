@@ -1,15 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
-using UnityEngine;
+﻿using TMPro;
 
 public class PlayerManager_Gabu : PlayerClass_Gabu
 {
-    TextMeshProUGUI tmp;
+    public TextMeshProUGUI tmp;
 
     private void Update()
     {
-        tmp.text = i_points.ToString();
+        tmp.text = "Youre Point: " + i_points.ToString();
         if (isIhasAce)
         {
             tmp.text += " or " + i_points + 10.ToString();
