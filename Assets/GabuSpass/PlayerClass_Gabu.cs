@@ -14,9 +14,9 @@ public class PlayerClass_Gabu : MonoBehaviour
     public GameObject cardCanvas;                               // カードのimageを並べるオブジェクト、リファクタリングで別クラスに分けた方がいい
     public GameObject cardPrefab;                               // カードプレハブ、上と同じで分けた方がいい
 
-    public TurnManager turnManagare;
-    public CardManager cardManager;
-    public InstanceClass instanceClass;
+    public TurnManager_Gabu turnManagare;
+    public CardManager_Gabu cardManager;
+    public InstanceClass_Gabu instanceClass;
 
     #endregion
 
@@ -94,7 +94,7 @@ public class PlayerClass_Gabu : MonoBehaviour
             return;
         }
 
-        _a_scripts.Add(cardManager.GetCard());
+        _a_scripts.Add(cardManager.PullCard());
         MyScriptableObject scriptable = _a_scripts[_a_scripts.Count - 1];
         _a_currentCards.Add(scriptable.number);
 

@@ -681,7 +681,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 802231171465926292, guid: 8097f3c54228d5843b005efaf573cba9, type: 3}
       propertyPath: m_Name
-      value: ButtonPrefab
+      value: Stand
       objectReference: {fileID: 0}
     - target: {fileID: 3083329627784962938, guid: 8097f3c54228d5843b005efaf573cba9, type: 3}
       propertyPath: m_Pivot.x
@@ -2011,7 +2011,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 802231171465926292, guid: 8097f3c54228d5843b005efaf573cba9, type: 3}
       propertyPath: m_Name
-      value: ButtonPrefab (1)
+      value: Hit
       objectReference: {fileID: 0}
     - target: {fileID: 3083329627784962938, guid: 8097f3c54228d5843b005efaf573cba9, type: 3}
       propertyPath: m_Pivot.x
