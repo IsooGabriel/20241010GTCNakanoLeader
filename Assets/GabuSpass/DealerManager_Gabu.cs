@@ -10,8 +10,8 @@ public class DealerManager_Gabu : PlayerClass_Gabu
         }
 
         int i = 0;
-        _i_points = PointCalculator(_a_currentCards.ToArray());
-        while (_i_points > _minPoint)
+        i_points = PointCalculator(_a_currentCards.ToArray());
+        while (i_points > _minPoint)
         {
             if (i < 100) { return; }
             i++;

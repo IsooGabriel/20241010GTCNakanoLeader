@@ -5,9 +5,10 @@ public class PlayerClass_Gabu : MonoBehaviour
 {
     #region　変数
 
-    protected List<int> _a_currentCards = new List<int>();    // カードの配列
-    protected int _i_points = 0;                              // カードの合計
-    public bool isIhasAce = false;                          // Aceもってるか
+    protected List<int> _a_currentCards = new List<int>();      // カードの配列
+    public int i_points = 0;                                    // カードの合計
+    public bool isIhasAce = false;                              // Aceもってるか
+    public bool isImNatural = false;                            // Natural Black Jackである場合
     public TurnManager turnManagare;
     public CardManager cardManager;
     public InstanceClass instanceClass;
@@ -38,6 +39,43 @@ public class PlayerClass_Gabu : MonoBehaviour
         }
 
         return total;
+    }
+
+    /// <summary>
+    /// Aceがあるか確認する
+    /// </summary>
+    /// <param name="cards"></param>
+    /// <returns></returns>
+    public bool CheckAce(int[] cards)
+    {
+        foreach (int i in cards)
+        {
+            if (i == 1) // Aceが見つかったら即true返す
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /// <summary>
+    /// Natural Black Jackかどうかを返す
+    /// </summary>
+    /// <param name="cards"></param>
+    /// <param name="minCards">変えなくていい、Naturalと判定する枚数</param>
+    /// <returns></returns>
+    public bool CheckNatural(int[] cards, int minCards = 2)
+    {
+        if (cards.Length > minCards)
+        {
+            return false;
+        }
+
+        if (PointCalculator(cards) == 21)
+        {
+            return true;
+        }
+        return false;
     }
 
     #endregion

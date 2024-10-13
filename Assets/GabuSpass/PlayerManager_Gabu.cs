@@ -9,10 +9,10 @@ public class PlayerManager_Gabu : PlayerClass_Gabu
 
     private void Update()
     {
-        tmp.text = _i_points.ToString();
+        tmp.text = i_points.ToString();
         if (isIhasAce)
         {
-            tmp.text += " or " + _i_points + 10.ToString();
+            tmp.text += " or " + i_points + 10.ToString();
         }
     }
 }
