@@ -83,7 +83,13 @@ public class PlayerClass_Gabu : MonoBehaviour
     /// </summary>
     public void PullCard()
     {
+        i_points = PointCalculator(_a_currentCards.ToArray());
+        if (i_points >= 21)
+        {
+            return;
+        }
         _a_currentCards.Add(cardManager.GetCard());
+        i_points = PointCalculator(_a_currentCards.ToArray());
     }
 
     /// <summary>

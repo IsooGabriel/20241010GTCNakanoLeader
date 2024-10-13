@@ -3016,6 +3016,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: Red_5cards_01
       objectReference: {fileID: 0}
+    - target: {fileID: 8273389261548604659, guid: 67d3beb5d9aebe3449973246488fbfa3, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8273389261548604659, guid: 67d3beb5d9aebe3449973246488fbfa3, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: a506b3b66c371d948adb135e67beeede, type: 2}
+    - target: {fileID: 8273389261548604659, guid: 67d3beb5d9aebe3449973246488fbfa3, type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9d0ec99a304804c4b993eb5fa073ec2e, type: 2}
+    - target: {fileID: 8273389261548604659, guid: 67d3beb5d9aebe3449973246488fbfa3, type: 3}
+      propertyPath: m_Materials.Array.data[3]
+      value: 
+      objectReference: {fileID: 2100000, guid: 656942f7d924db74c96927ae2bb114a4, type: 2}
+    - target: {fileID: 8273389261548604659, guid: 67d3beb5d9aebe3449973246488fbfa3, type: 3}
+      propertyPath: m_Materials.Array.data[5]
+      value: 
+      objectReference: {fileID: 2100000, guid: db091d8dbd60d1e49a37df46edc8bdcc, type: 2}
+    - target: {fileID: 8273389261548604659, guid: 67d3beb5d9aebe3449973246488fbfa3, type: 3}
+      propertyPath: m_Materials.Array.data[6]
+      value: 
+      objectReference: {fileID: 2100000, guid: 656942f7d924db74c96927ae2bb114a4, type: 2}
+    - target: {fileID: 8273389261548604659, guid: 67d3beb5d9aebe3449973246488fbfa3, type: 3}
+      propertyPath: m_Materials.Array.data[7]
+      value: 
+      objectReference: {fileID: 2100000, guid: 656942f7d924db74c96927ae2bb114a4, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
