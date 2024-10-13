@@ -1,9 +1,9 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CardManager_Gabu : MonoBehaviour
 {
-    public MyScriptableObject PullCard()
+    public CardScriptableObject PullCard()
     {
-        return new MyScriptableObject();
+        return new CardScriptableObject();
     }
 }

@@ -1,18 +1,18 @@
-using System.Collections.Generic;
+ï»¿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerClass_Gabu : MonoBehaviour
 {
-    #region@•Ï”
+    #regionã€€å¤‰æ•°
 
-    protected List<int> _a_currentCards;                        // ƒJ[ƒh‚Ìint”z—ñ
-    protected List<MyScriptableObject> _a_scripts;              // ƒJ[ƒh‚ÌscriptableObject”z—ñ
-    public int i_points = 0;                                    // ƒJ[ƒh‚Ì‡Œv
-    public bool isIhasAce = false;                              // Ace‚à‚Á‚Ä‚é‚©
-    public bool isImNatural = false;                            // Natural Black Jack‚Å‚ ‚éê‡
-    public GameObject cardCanvas;                               // ƒJ[ƒh‚Ìimage‚ğ•À‚×‚éƒIƒuƒWƒFƒNƒgAƒŠƒtƒ@ƒNƒ^ƒŠƒ“ƒO‚Å•ÊƒNƒ‰ƒX‚É•ª‚¯‚½•û‚ª‚¢‚¢
-    public GameObject cardPrefab;                               // ƒJ[ƒhƒvƒŒƒnƒuAã‚Æ“¯‚¶‚Å•ª‚¯‚½•û‚ª‚¢‚¢
+    protected List<int> _a_currentCards;                        // ã‚«ãƒ¼ãƒ‰ã®inté…åˆ—
+    protected List<CardScriptableObject> _a_scripts;              // ã‚«ãƒ¼ãƒ‰ã®scriptableObjecté…åˆ—
+    public int i_points = 0;                                    // ã‚«ãƒ¼ãƒ‰ã®åˆè¨ˆ
+    public bool isIhasAce = false;                              // Aceã‚‚ã£ã¦ã‚‹ã‹
+    public bool isImNatural = false;                            // Natural Black Jackã§ã‚ã‚‹å ´åˆ
+    public GameObject cardCanvas;                               // ã‚«ãƒ¼ãƒ‰ã®imageã‚’ä¸¦ã¹ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€ãƒªãƒ•ã‚¡ã‚¯ã‚¿ãƒªãƒ³ã‚°ã§åˆ¥ã‚¯ãƒ©ã‚¹ã«åˆ†ã‘ãŸæ–¹ãŒã„ã„
+    public GameObject cardPrefab;                               // ã‚«ãƒ¼ãƒ‰ãƒ—ãƒ¬ãƒãƒ–ã€ä¸Šã¨åŒã˜ã§åˆ†ã‘ãŸæ–¹ãŒã„ã„
 
     public TurnManager_Gabu turnManagare;
     public CardManager_Gabu cardManager;
@@ -20,11 +20,11 @@ public class PlayerClass_Gabu : MonoBehaviour
 
     #endregion
 
-    #region@ŠÖ”
+    #regionã€€é–¢æ•°
 
     /// <summary>
-    /// ƒJ[ƒh‚Ì‡Œv‚ğŒvZ‚·‚éBace‚ª‚ ‚éê‡‚à‚¿‚á‚ñ‚Æ‚â‚éiace‚ª•¡”–‡‚ ‚Á‚Ä‚à‡Œv‚Ìƒpƒ^[ƒ“‚Í‚Q‚Å‚ ‚éj
-    /// ÀÛ‚Í‚±‚ñ‚È“ï‚µ‚­‚È‚¢Aace‚ª‚ ‚éê‡‚Í‡Œv‚Æ‚»‚Ì‡Œv‚É‚P‚O‚ğ‘«‚µ‚½‚Q‚Â‚Ìƒpƒ^[ƒ“‚³‚¦‚ ‚ê‚Î‚¢‚¢
+    /// ã‚«ãƒ¼ãƒ‰ã®åˆè¨ˆã‚’è¨ˆç®—ã™ã‚‹ã€‚aceãŒã‚ã‚‹å ´åˆã‚‚ã¡ã‚ƒã‚“ã¨ã‚„ã‚‹ï¼ˆaceãŒè¤‡æ•°æšã‚ã£ã¦ã‚‚åˆè¨ˆã®ãƒ‘ã‚¿ãƒ¼ãƒ³ã¯ï¼’ã§ã‚ã‚‹ï¼‰
+    /// å®Ÿéš›ã¯ã“ã‚“ãªé›£ã—ããªã„ã€aceãŒã‚ã‚‹å ´åˆã¯åˆè¨ˆã¨ãã®åˆè¨ˆã«ï¼‘ï¼ã‚’è¶³ã—ãŸï¼’ã¤ã®ãƒ‘ã‚¿ãƒ¼ãƒ³ã•ãˆã‚ã‚Œã°ã„ã„
     /// </summary>
     /// <param name="cards"></param>
     /// <returns></returns>
@@ -36,7 +36,7 @@ public class PlayerClass_Gabu : MonoBehaviour
         {
             total += cards[i];
 
-            // Ace‚à‚Á‚Ä‚é‚ğtrue
+            // Aceã‚‚ã£ã¦ã‚‹ã‚’true
             if (cards[i] == 1)
             {
                 isIhasAce = true;
@@ -47,7 +47,7 @@ public class PlayerClass_Gabu : MonoBehaviour
     }
 
     /// <summary>
-    /// Ace‚ª‚ ‚é‚©Šm”F‚·‚é
+    /// AceãŒã‚ã‚‹ã‹ç¢ºèªã™ã‚‹
     /// </summary>
     /// <param name="cards"></param>
     /// <returns></returns>
@@ -55,7 +55,7 @@ public class PlayerClass_Gabu : MonoBehaviour
     {
         foreach (int i in cards)
         {
-            if (i == 1) // Ace‚ªŒ©‚Â‚©‚Á‚½‚ç‘¦true•Ô‚·
+            if (i == 1) // AceãŒè¦‹ã¤ã‹ã£ãŸã‚‰å³trueè¿”ã™
             {
                 return true;
             }
@@ -64,10 +64,10 @@ public class PlayerClass_Gabu : MonoBehaviour
     }
 
     /// <summary>
-    /// Natural Black Jack‚©‚Ç‚¤‚©‚ğ•Ô‚·
+    /// Natural Black Jackã‹ã©ã†ã‹ã‚’è¿”ã™
     /// </summary>
     /// <param name="cards"></param>
-    /// <param name="minCards">•Ï‚¦‚È‚­‚Ä‚¢‚¢ANatural‚Æ”»’è‚·‚é–‡”</param>
+    /// <param name="minCards">å¤‰ãˆãªãã¦ã„ã„ã€Naturalã¨åˆ¤å®šã™ã‚‹æšæ•°</param>
     /// <returns></returns>
     public bool CheckNatural(int[] cards, int minCards = 2)
     {
@@ -84,7 +84,7 @@ public class PlayerClass_Gabu : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒJ[ƒh‚ğ‚P–‡ˆø‚­
+    /// ã‚«ãƒ¼ãƒ‰ã‚’ï¼‘æšå¼•ã
     /// </summary>
     public void PullCard()
     {
@@ -95,7 +95,7 @@ public class PlayerClass_Gabu : MonoBehaviour
         }
 
         _a_scripts.Add(cardManager.PullCard());
-        MyScriptableObject scriptable = _a_scripts[_a_scripts.Count - 1];
+        CardScriptableObject scriptable = _a_scripts[_a_scripts.Count - 1];
         _a_currentCards.Add(scriptable.number);
 
         i_points = PointCalculator(_a_currentCards.ToArray());
@@ -103,7 +103,7 @@ public class PlayerClass_Gabu : MonoBehaviour
     }
 
     /// <summary>
-    /// ‚¿DƒNƒŠƒA
+    /// æŒã¡æœ­ã‚¯ãƒªã‚¢
     /// </summary>
     public void CleaCards()
     {
@@ -112,10 +112,10 @@ public class PlayerClass_Gabu : MonoBehaviour
     }
 
     /// <summary>
-    /// ScriptableObject‚©‚çƒXƒvƒ‰ƒCƒg‚ğƒLƒƒƒ“ƒoƒX‚É‰f‚·ŒN
+    /// ScriptableObjectã‹ã‚‰ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚’ã‚­ãƒ£ãƒ³ãƒã‚¹ã«æ˜ ã™å›
     /// </summary>
     /// <param name="scriptable"></param>
-    public void InstanceCard(MyScriptableObject scriptable)
+    public void InstanceCard(CardScriptableObject scriptable)
     {
         GameObject obj = Instantiate(cardPrefab);
         obj.GetComponent<Image>().sprite = scriptable.sprite;
@@ -123,13 +123,13 @@ public class PlayerClass_Gabu : MonoBehaviour
     }
 
     /// <summary>
-    /// ˆê‰ÆS’†‚É©•ª‚¾‚¯¸”s‚·‚éŒN
+    /// ä¸€å®¶å¿ƒä¸­ã«è‡ªåˆ†ã ã‘å¤±æ•—ã™ã‚‹å›
     /// </summary>
     public void CleaCardsCanvas()
     {
         foreach (Transform child in cardCanvas.transform)
         {
-            //©•ª‚Ìq‹Ÿ‚ğDestroy‚·‚é
+            //è‡ªåˆ†ã®å­ä¾›ã‚’Destroyã™ã‚‹
             Destroy(child.gameObject);
         }
     }

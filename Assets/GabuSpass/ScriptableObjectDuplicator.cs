@@ -1,55 +1,48 @@
-using UnityEngine;
-using UnityEditor;
-using System.IO;
+ï»¿using System.IO;
 using System.Text.RegularExpressions;
+using UnityEditor;
+using UnityEngine;
 
 public class ScriptableObjectDuplicator : MonoBehaviour
 {
-    // ƒRƒs[Œ³‚ÌScriptableObject
-    public MyScriptableObject originalScriptableObject;
+    // ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆãŒä¿å­˜ã•ã‚Œã¦ã„ã‚‹ãƒ•ã‚©ãƒ«ãƒ€
+    public string spriteFolderPath = "Assets/GabuSpass/Cards/";
 
-    // ƒf[ƒ^ƒtƒ@ƒCƒ‹‚ª•Û‘¶‚³‚ê‚Ä‚¢‚éƒtƒHƒ‹ƒ_
-    public string folderPath = "Assets/DataFiles/";
-
-    // Sprite‚ğ•Û‘¶‚·‚éƒtƒHƒ‹ƒ_
-    public string spriteFolderPath = "Assets/Sprites/";
-
-    [ContextMenu("Duplicate ScriptableObjects From Files")]
-    public void DuplicateScriptableObjectsFromFiles()
+    [ContextMenu("Generate ScriptableObjects From Sprites")]
+    public void GenerateScriptableObjectsFromSprites()
     {
-        // ƒtƒHƒ‹ƒ_“à‚Ì‚·‚×‚Ä‚Ìƒtƒ@ƒCƒ‹‚ğæ“¾
-        string[] files = Directory.GetFiles(folderPath);
+        // ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆãƒ•ã‚©ãƒ«ãƒ€å†…ã®ã™ã¹ã¦ã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚’å–å¾—
+        string[] spriteFiles = Directory.GetFiles(spriteFolderPath, "*.png");
 
-        foreach (string file in files)
+        foreach (string spriteFile in spriteFiles)
         {
-            // Šg’£q‚ğæ‚èœ‚¢‚½ƒtƒ@ƒCƒ‹–¼‚ğæ“¾
-            string fileName = Path.GetFileNameWithoutExtension(file);
+            // ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆãƒ•ã‚¡ã‚¤ãƒ«åã‚’å–å¾—ï¼ˆæ‹¡å¼µå­ãªã—ï¼‰
+            string fileName = Path.GetFileNameWithoutExtension(spriteFile);
 
-            // ƒtƒ@ƒCƒ‹–¼‚ğ³‹K•\Œ»‚Å‰ğÍ (Name00 ‚ÌŒ`®‚ğ‘z’è)
+            // ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆãƒ•ã‚¡ã‚¤ãƒ«åã‚’æ­£è¦è¡¨ç¾ã§è§£æ (ä¾‹: Name00)
             Match match = Regex.Match(fileName, @"([A-Za-z]+)(\d+)$");
 
             if (match.Success)
             {
-                // name ‚Æ number ‚ğæ“¾
+                // name ã¨ number ã‚’å–å¾—
                 string newName = match.Groups[1].Value;
-                string numberString = match.Groups[2].Value.TrimStart('0'); // ”š‚Ìæ“ª‚Ì0‚ğíœ
+                string numberString = match.Groups[2].Value.TrimStart('0'); // æ•°å­—ã®å…ˆé ­ã®0ã‚’å‰Šé™¤
                 int newNumber;
 
                 if (int.TryParse(numberString, out newNumber))
                 {
-                    // Spriteƒtƒ@ƒCƒ‹‚ğ’T‚· (“¯‚¶–¼‘O‚Ì.pngƒtƒ@ƒCƒ‹‚ğ‘z’è)
-                    string spritePath = Path.Combine(spriteFolderPath, newName + ".png");
-                    Sprite sprite = AssetDatabase.LoadAssetAtPath<Sprite>(spritePath);
+                    // ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚’èª­ã¿è¾¼ã‚€
+                    Sprite sprite = AssetDatabase.LoadAssetAtPath<Sprite>(spriteFile);
 
                     if (sprite != null)
                     {
-                        // ScriptableObject‚ğ•¡»
-                        MyScriptableObject newScriptableObject = ScriptableObject.CreateInstance<MyScriptableObject>();
-                        newScriptableObject.name = newName;
-                        newScriptableObject.number = newNumber;
-                        newScriptableObject.sprite = sprite;
+                        // ScriptableObjectã‚’ç”Ÿæˆ
+                        CardScriptableObject newScriptableObject = ScriptableObject.CreateInstance<CardScriptableObject>();
+                        newScriptableObject.name = newName;   // åå‰ã‚’ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆåã«è¨­å®š
+                        newScriptableObject.number = newNumber;  // ãƒ•ã‚¡ã‚¤ãƒ«åã®æ•°å­—ã‚’è¨­å®š
+                        newScriptableObject.sprite = sprite;  // ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚’è¨­å®š
 
-                        // •¡»‚µ‚½ScriptableObject‚ğ•Û‘¶
+                        // è¤‡è£½ã—ãŸScriptableObjectã‚’ä¿å­˜ (ãƒ•ã‚¡ã‚¤ãƒ«åã‚’ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆåã«åŸºã¥ã„ã¦ç”Ÿæˆ)
                         string assetPath = Path.Combine("Assets/GeneratedScriptableObjects", fileName + ".asset");
                         AssetDatabase.CreateAsset(newScriptableObject, assetPath);
                         AssetDatabase.SaveAssets();
@@ -58,13 +51,13 @@ public class ScriptableObjectDuplicator : MonoBehaviour
                     }
                     else
                     {
-                        Debug.LogError($"No sprite found for {newName} at {spritePath}");
+                        Debug.LogError($"Failed to load sprite for {fileName}");
                     }
                 }
             }
             else
             {
-                Debug.LogWarning($"File {fileName} does not match the expected format 'Name00'. Skipping.");
+                Debug.LogWarning($"Sprite file {fileName} does not match the expected format 'Name00'. Skipping.");
             }
         }
 
