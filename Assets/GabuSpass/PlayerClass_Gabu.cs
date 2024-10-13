@@ -1,14 +1,19 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerClass_Gabu : MonoBehaviour
 {
     #region　変数
 
-    protected List<int> _a_currentCards = new List<int>();      // カードの配列
+    protected List<int> _a_currentCards;                        // カードのint配列
+    protected List<MyScriptableObject> _a_scripts;              // カードのscriptableObject配列
     public int i_points = 0;                                    // カードの合計
     public bool isIhasAce = false;                              // Aceもってるか
     public bool isImNatural = false;                            // Natural Black Jackである場合
+    public GameObject cardCanvas;                               // カードのimageを並べるオブジェクト、リファクタリングで別クラスに分けた方がいい
+    public GameObject cardPrefab;                               // カードプレハブ、上と同じで分けた方がいい
+
     public TurnManager turnManagare;
     public CardManager cardManager;
     public InstanceClass instanceClass;
@@ -88,8 +93,13 @@ public class PlayerClass_Gabu : MonoBehaviour
         {
             return;
         }
-        _a_currentCards.Add(cardManager.GetCard());
+
+        _a_scripts.Add(cardManager.GetCard());
+        MyScriptableObject scriptable = _a_scripts[_a_scripts.Count - 1];
+        _a_currentCards.Add(scriptable.number);
+
         i_points = PointCalculator(_a_currentCards.ToArray());
+        InstanceCard(scriptable);
     }
 
     /// <summary>
@@ -98,8 +108,30 @@ public class PlayerClass_Gabu : MonoBehaviour
     public void CleaCards()
     {
         _a_currentCards.Clear();
+        CleaCardsCanvas();
     }
 
-    #endregion
+    /// <summary>
+    /// ScriptableObjectからスプライトをキャンバスに映す君
+    /// </summary>
+    /// <param name="scriptable"></param>
+    public void InstanceCard(MyScriptableObject scriptable)
+    {
+        GameObject obj = Instantiate(cardPrefab);
+        obj.GetComponent<Image>().sprite = scriptable.sprite;
+        obj.transform.parent = cardCanvas.transform;
+    }
 
+    /// <summary>
+    /// 一家心中に自分だけ失敗する君
+    /// </summary>
+    public void CleaCardsCanvas()
+    {
+        foreach (Transform child in cardCanvas.transform)
+        {
+            //自分の子供をDestroyする
+            Destroy(child.gameObject);
+        }
+    }
+    #endregion
 }
