@@ -78,6 +78,22 @@ public class PlayerClass_Gabu : MonoBehaviour
         return false;
     }
 
+    /// <summary>
+    /// カードを１枚引く
+    /// </summary>
+    public void PullCard()
+    {
+        _a_currentCards.Add(cardManager.GetCard());
+    }
+
+    /// <summary>
+    /// 持ち札クリア
+    /// </summary>
+    public void CleaCards()
+    {
+        _a_currentCards.Clear();
+    }
+
     #endregion
 
 }
