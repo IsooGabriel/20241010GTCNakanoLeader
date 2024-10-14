@@ -7,7 +7,7 @@ public class PlayerClass_Gabu : MonoBehaviour
     #region　変数
 
     protected List<int> _a_currentCards = new List<int>();                        // カードのint配列
-    protected List<CardScriptableObject> _a_scripts;              // カードのscriptableObject配列
+    protected List<CardScriptableObject> _a_scripts = new List<CardScriptableObject>();              // カードのscriptableObject配列
     public int i_points = 0;                                    // カードの合計
     public bool isIhasAce = false;                              // Aceもってるか
     public bool isImNatural = false;                            // Natural Black Jackである場合
