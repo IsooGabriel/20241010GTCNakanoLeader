@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Diamond13
   m_EditorClassIdentifier: 
   name: Diamond
-  number: 13
+  number: 10
   sprite: {fileID: 21300000, guid: beb9e807556d4b84397668591d79998e, type: 3}

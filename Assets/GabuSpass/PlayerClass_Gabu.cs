@@ -20,7 +20,7 @@ public class PlayerClass_Gabu : MonoBehaviour
 
     #endregion
 
-    #region　関数
+    #region 関数
 
     /// <summary>
     /// カードの合計を計算する。aceがある場合もちゃんとやる（aceが複数枚あっても合計のパターンは２である）
@@ -122,9 +122,11 @@ public class PlayerClass_Gabu : MonoBehaviour
     /// <param name="scriptable"></param>
     public void InstanceCard(CardScriptableObject scriptable)
     {
+        Vector2 prefabScale = cardPrefab.transform.localScale;
         GameObject obj = Instantiate(cardPrefab);
         obj.GetComponent<Image>().sprite = scriptable.sprite;
         obj.transform.parent = cardCanvas.transform;
+        obj.transform.localScale = prefabScale;
     }
 
     /// <summary>

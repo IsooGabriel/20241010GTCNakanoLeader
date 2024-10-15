@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Spade13
   m_EditorClassIdentifier: 
   name: Spade
-  number: 13
+  number: 10
   sprite: {fileID: 21300000, guid: 9b5dff73d7c2260409094850873e5c39, type: 3}
