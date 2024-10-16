@@ -10,7 +10,7 @@ public class DealerManager_Gabu : PlayerClass_Gabu
         tmp.text = "<size=70>Dealer Point: </size><size=120>" + i_points.ToString() + "</size>";
         if (isIhasAce)
         {
-            tmp.text += "<size=70> or </size><size=120>" + i_points + 10.ToString() + "</size>";
+            tmp.text += "<size=70> or </size><size=120>" + (i_points + 10).ToString() + "</size>";
         }
 
         if (turnManagare.isPlayerTurn)
