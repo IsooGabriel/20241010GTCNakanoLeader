@@ -26,6 +26,6 @@ public class DealerManager_Gabu : PlayerClass_Gabu
             i++;
             _a_currentCards.Add(cardManager.PullCard().number);
         }
-        turnManagare.TurnEnd();
+        turnManagare.SetTurnEnd();
     }
 }

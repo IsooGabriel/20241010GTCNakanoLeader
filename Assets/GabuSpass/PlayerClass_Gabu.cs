@@ -14,8 +14,8 @@ public class PlayerClass_Gabu : MonoBehaviour
     public GameObject cardCanvas;                               // カードのimageを並べるオブジェクト、リファクタリングで別クラスに分けた方がいい
     public GameObject cardPrefab;                               // カードプレハブ、上と同じで分けた方がいい
 
-    public TurnManager_Gabu turnManagare;
-    public CardManager_Gabu cardManager;
+    public TurnManager_Sionoya turnManagare;
+    public cardmanager_mizuno cardManager;
     public InstanceClass_Gabu instanceClass;
 
     #endregion

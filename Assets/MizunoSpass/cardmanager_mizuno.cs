@@ -1,37 +1,37 @@
-using System.Collections.Generic;
+ï»¿using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// ƒJ[ƒh‚ÌƒXƒNƒŠƒvƒ^ƒuƒ‹ƒIƒuƒWƒFƒNƒg‚ÌƒRƒŒƒNƒVƒ‡ƒ“‚ğŠÇ—‚µ‚Ü‚·B
+/// ã‚«ãƒ¼ãƒ‰ã®ã‚¹ã‚¯ãƒªãƒ—ã‚¿ãƒ–ãƒ«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã‚’ç®¡ç†ã—ã¾ã™ã€‚
 /// </summary>
 public class cardmanager_mizuno : MonoBehaviour
 {
     /// <summary>
-    /// ƒJ[ƒhƒŠƒXƒg‚ğ‰Šú‰»‚·‚é‚½‚ß‚ÌŠî–{ƒJ[ƒh‚Ì”z—ñB
+    /// ã‚«ãƒ¼ãƒ‰ãƒªã‚¹ãƒˆã‚’åˆæœŸåŒ–ã™ã‚‹ãŸã‚ã®åŸºæœ¬ã‚«ãƒ¼ãƒ‰ã®é…åˆ—ã€‚
     /// </summary>
     [SerializeField]
     private CardScriptableObject[] _Bacecards;
-         
+
 
     /// <summary>
-    /// ƒJ[ƒh‚ÌƒXƒNƒŠƒvƒ^ƒuƒ‹ƒIƒuƒWƒFƒNƒg‚ÌƒŠƒXƒgB
+    /// ã‚«ãƒ¼ãƒ‰ã®ã‚¹ã‚¯ãƒªãƒ—ã‚¿ãƒ–ãƒ«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ãƒªã‚¹ãƒˆã€‚
     /// </summary>
     public List<CardScriptableObject> cards;
 
     /// <summary>
-    /// Šî–{ƒJ[ƒh‚ÅƒJ[ƒhƒŠƒXƒg‚ğ‰Šú‰»‚µ‚Ü‚·B
+    /// åŸºæœ¬ã‚«ãƒ¼ãƒ‰ã§ã‚«ãƒ¼ãƒ‰ãƒªã‚¹ãƒˆã‚’åˆæœŸåŒ–ã—ã¾ã™ã€‚
     /// </summary>
     private void Start()
     {
-        // _Bacecards‚ğnumber‡‚Éƒ\[ƒg
+        // _Bacecardsã‚’numberé †ã«ã‚½ãƒ¼ãƒˆ
         System.Array.Sort(_Bacecards, (card1, card2) => card1.number.CompareTo(card2.number));
         cards = new List<CardScriptableObject>(_Bacecards);
     }
 
     /// <summary>
-    /// ƒŠƒXƒg‚©‚çƒ‰ƒ“ƒ_ƒ€‚ÉƒJ[ƒh‚ğˆø‚«AƒŠƒXƒg‚©‚çíœ‚µ‚Ü‚·B
+    /// ãƒªã‚¹ãƒˆã‹ã‚‰ãƒ©ãƒ³ãƒ€ãƒ ã«ã‚«ãƒ¼ãƒ‰ã‚’å¼•ãã€ãƒªã‚¹ãƒˆã‹ã‚‰å‰Šé™¤ã—ã¾ã™ã€‚
     /// </summary>
-    /// <returns>ˆø‚¢‚½ƒJ[ƒhB</returns>
+    /// <returns>å¼•ã„ãŸã‚«ãƒ¼ãƒ‰ã€‚</returns>
     public CardScriptableObject PullCard()
     {
         CardScriptableObject pullCard = cards[Random.Range(0, cards.Count - 1)];
