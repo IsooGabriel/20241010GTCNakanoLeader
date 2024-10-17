@@ -1,16 +1,20 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class GameManager_Nakano : MonoBehaviour
 {
-    int PlayerPoint;//ƒvƒŒƒCƒ„[‚Ì‡Œvƒ|ƒCƒ“ƒg(‰¼)
-    int DealerPoint;//ƒfƒB[ƒ‰[‚Ì‡Œvƒ|ƒCƒ“ƒg(‰¼)
-
+    int PlayerPoint;//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®åˆè¨ˆãƒã‚¤ãƒ³ãƒˆ(ä»®)
+    int DealerPoint;//ãƒ‡ã‚£ãƒ¼ãƒ©ãƒ¼ã®åˆè¨ˆãƒã‚¤ãƒ³ãƒˆ(ä»®)
+    PlayerManager_Gabu playermanagerscript;
+    DealerManager_Gabu dealermanagerscript;
     // Start is called before the first frame update
     void Start()
     {
-        
+        playermanagerscript = GetComponent<PlayerManager_Gabu>();//PlayerManagerã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚’æ¢ã™
+        dealermanagerscript = GetComponent<DealerManager_Gabu>();//DealerManagerã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚’æ¢ã™
+
     }
 
     // Update is called once per frame
@@ -18,21 +22,49 @@ public class GameManager_Nakano : MonoBehaviour
     {
         
     }
-    void Judge()//Ÿ”s
+    void startGame()
     {
-        PlayerManager_Gabu playermanagerscript = GetComponent<PlayerManager_Gabu>();//PlayerManagerƒXƒNƒŠƒvƒg‚ğ’T‚·
-        DealerManager_Gabu dealermanagerscript = GetComponent<DealerManager_Gabu>();//DealerManagerƒXƒNƒŠƒvƒg‚ğ’T‚·
-        if (PlayerPoint< DealerPoint)//Player‚ÌŸ”s‚ğ’²‚×‚é
+
+    }
+
+    int Judge()//å‹æ•—
+    {
+        PlayerPoint = playermanagerscript.i_points;
+        DealerPoint= dealermanagerscript.i_points;
+       bool PlayerNatural = playermanagerscript.isImNatural;
+        bool DealerNatural = dealermanagerscript.isImNatural;
+        int judge = 0;
+        if(PlayerPoint!=DealerPoint)//åŒã˜ãƒã‚¤ãƒ³ãƒˆã˜ã‚ƒãªã„ã¨ã
         {
-            Debug.Log("”s–k");
+            if (PlayerPoint <= 21 && DealerPoint <= 21)
+            {
+                judge = PlayerPoint > DealerPoint ? 0 : 1;
+            }
+            else if (DealerPoint > 21)//
+            {
+                judge = 0;
+            }
+            else if (PlayerPoint > 21)//
+            {
+                judge = 1;
+            }
+            else
+            {
+                judge = 2;
+            }
         }
-        else@if (PlayerPoint > DealerPoint)//Player‚ÌŸ”s‚ğ’²‚×‚é
+        else if (!DealerNatural)//
         {
-            Debug.Log("Ÿ—˜");
+            judge = 0;
+        }
+        else if (!PlayerNatural)//
+        {
+            judge = 1;
         }
         else
         {
-            Debug.Log("“¯“_");
+            judge = 2;
         }
+        return judge;
     }
 }
