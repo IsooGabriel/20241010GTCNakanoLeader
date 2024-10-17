@@ -8,8 +8,9 @@ public class GameManager_Nakano : MonoBehaviour
     int playerWins = 0;
     int dealerWins = 0;
 
-    TextMeshProUGUI playerTmp;
-    TextMeshProUGUI dealerTmp;
+    public TextMeshProUGUI playerTmp;
+    public TextMeshProUGUI dealerTmp;
+    public TextMeshProUGUI judjeTmp;
 
     PlayerManager_Gabu playermanagerscript;
     DealerManager_Gabu dealermanagerscript;
@@ -51,23 +52,73 @@ public class GameManager_Nakano : MonoBehaviour
 
     void startGame()
     {
-        playermanagerscript.PullCard();
-        dealermanagerscript.PullCard();
-        playermanagerscript.PullCard();
-        dealermanagerscript.PullCard();
+        DealingCards();
         turnmanagerscript.isPlayerTurn = true;
         turnmanagerscript.turnCount = 1;
         playerWins = 0;
         dealerWins = 0;
     }
 
+    public void DealingCards()
+    {
+        playermanagerscript.PullCard();
+        dealermanagerscript.PullCard();
+        playermanagerscript.PullCard();
+        dealermanagerscript.PullCard();
+    }
+
+    public void NextTurn()
+    {
+        playermanagerscript.CleaCards();
+        dealermanagerscript.CleaCards();
+        turnmanagerscript.isPlayerTurn = true;
+
+        DealingCards();
+    }
+
+    public void Stand()
+    {
+        switch (Judge())
+        {
+            case 0:
+                playerWins++;
+                break;
+            case 1:
+                dealerWins++;
+                break;
+            case 2:
+                break;
+        }
+
+
+    }
+
+    public void PlyaerWIN()
+    {
+        judjeTmp.text = "<color=yellow>WIN<color>";
+    }
+
+    public void DealerWINT()
+    {
+        judjeTmp.text = "<color=#5d00ff>LOSE<color>";
+    }
+
+    public void JudgePush()
+    {
+        judjeTmp.text = "<color=gray>PUSH<color>";
+    }
+
     int Judge()//勝敗
     {
         PlayerPoint = playermanagerscript.i_points;
         DealerPoint = dealermanagerscript.i_points;
+
+        PlayerPoint += (PlayerPoint + 10) <= 21 ? 10 : 0;
+        DealerPoint += (DealerPoint + 10) <= 21 ? 10 : 0;
+
         bool PlayerNatural = playermanagerscript.isImNatural;
         bool DealerNatural = dealermanagerscript.isImNatural;
-        int judge = 0;
+        int judge = 0;                  // 0:Player WIN 1:Dealer WIN 2:Push
         if (PlayerPoint != DealerPoint)//同じポイントじゃないとき
         {
             if (PlayerPoint <= 21 && DealerPoint <= 21)

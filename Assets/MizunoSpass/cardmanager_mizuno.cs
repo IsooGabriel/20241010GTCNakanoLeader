@@ -12,7 +12,6 @@ public class cardmanager_mizuno : MonoBehaviour
     [SerializeField]
     private CardScriptableObject[] _Bacecards;
 
-
     /// <summary>
     /// カードのスクリプタブルオブジェクトのリスト。
     /// </summary>
@@ -34,14 +33,22 @@ public class cardmanager_mizuno : MonoBehaviour
     /// <returns>引いたカード。</returns>
     public CardScriptableObject PullCard()
     {
+        if (cards.Count == 0)
+        {
+            ResetCards();
+
+            Debug.Log(cards.Count);
+        }
+
         CardScriptableObject pullCard = cards[Random.Range(0, cards.Count - 1)];
         cards.Remove(pullCard);
         return pullCard;
     }
+
+
     public void ResetCards()
     {
         cards = new List<CardScriptableObject>(_Bacecards);
-
     }
 
 }

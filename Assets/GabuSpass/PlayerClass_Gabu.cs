@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -100,7 +101,7 @@ public class PlayerClass_Gabu : MonoBehaviour
         }
 
         _a_scripts.Add(cardManager.PullCard());
-        CardScriptableObject scriptable = _a_scripts[_a_scripts.Count - 1];
+        CardScriptableObject scriptable = _a_scripts.Last();
         _a_currentCards.Add(scriptable.number);
 
         i_points = PointCalculator(_a_currentCards.ToArray());
@@ -123,10 +124,14 @@ public class PlayerClass_Gabu : MonoBehaviour
     public void InstanceCard(CardScriptableObject scriptable)
     {
         Vector2 prefabScale = cardPrefab.transform.localScale;
+        Vector3 position = cardPrefab.transform.position;
+
         GameObject obj = Instantiate(cardPrefab);
         obj.GetComponent<Image>().sprite = scriptable.sprite;
         obj.transform.parent = cardCanvas.transform;
         obj.transform.localScale = prefabScale;
+        obj.transform.localPosition = Vector3.zero;
+        obj.transform.localRotation = cardPrefab.transform.rotation;
     }
 
     /// <summary>
