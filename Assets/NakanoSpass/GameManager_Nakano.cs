@@ -9,6 +9,9 @@ public class GameManager_Nakano : MonoBehaviour
     int DealerPoint;//ディーラーの合計ポイント(仮)
     PlayerManager_Gabu playermanagerscript;
     DealerManager_Gabu dealermanagerscript;
+    cardmanager_mizuno cardmanagerscript;
+    TurnManager_Sionoya turnmanagerscript;
+
     // Start is called before the first frame update
     void Start()
     {
