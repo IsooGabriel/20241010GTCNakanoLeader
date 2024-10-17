@@ -2,11 +2,11 @@
 
 public class InstanceClass_Gabu : MonoBehaviour
 {
-    GameManager_Nakano gameManager;
-    TurnManager_Sionoya turnManager;
-    cardmanager_mizuno cardManager;
-    PlayerManager_Gabu player;
-    DealerManager_Gabu dealer;
+    public GameManager_Nakano gameManager;
+    public TurnManager_Sionoya turnManager;
+    public cardmanager_mizuno cardManager;
+    public PlayerManager_Gabu player;
+    public DealerManager_Gabu dealer;
 
     private void Awake()
     {

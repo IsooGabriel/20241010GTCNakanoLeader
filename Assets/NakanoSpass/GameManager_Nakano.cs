@@ -1,43 +1,74 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using TMPro;
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class GameManager_Nakano : MonoBehaviour
 {
     int PlayerPoint;//プレイヤーの合計ポイント(仮)
     int DealerPoint;//ディーラーの合計ポイント(仮)
+    int playerWins = 0;
+    int dealerWins = 0;
+
+    TextMeshProUGUI playerTmp;
+    TextMeshProUGUI dealerTmp;
+
     PlayerManager_Gabu playermanagerscript;
     DealerManager_Gabu dealermanagerscript;
     cardmanager_mizuno cardmanagerscript;
     TurnManager_Sionoya turnmanagerscript;
+    InstanceClass_Gabu instanceClass;
 
     // Start is called before the first frame update
     void Start()
     {
-        playermanagerscript = GetComponent<PlayerManager_Gabu>();//PlayerManagerスクリプトを探す
-        dealermanagerscript = GetComponent<DealerManager_Gabu>();//DealerManagerスクリプトを探す
+        if (instanceClass == null)
+        {
+            instanceClass = FindObjectOfType<InstanceClass_Gabu>();
+            if (instanceClass == null)
+            {
+                Debug.LogWarning("InstanceClass_Gabuが見つかりません");
+            }
+        }
 
+        if (playermanagerscript == null)
+        {
+            playermanagerscript = instanceClass.player;
+        }
+        if (dealermanagerscript == null)
+        {
+            dealermanagerscript = instanceClass.dealer;
+        }
+        if (cardmanagerscript == null)
+        {
+            cardmanagerscript = instanceClass.cardManager;
+        }
+        if (turnmanagerscript == null)
+        {
+            turnmanagerscript = instanceClass.turnManager;
+        }
+        startGame();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
     void startGame()
     {
-
+        playermanagerscript.PullCard();
+        dealermanagerscript.PullCard();
+        playermanagerscript.PullCard();
+        dealermanagerscript.PullCard();
+        turnmanagerscript.isPlayerTurn = true;
+        turnmanagerscript.turnCount = 1;
+        playerWins = 0;
+        dealerWins = 0;
     }
 
     int Judge()//勝敗
     {
         PlayerPoint = playermanagerscript.i_points;
-        DealerPoint= dealermanagerscript.i_points;
-       bool PlayerNatural = playermanagerscript.isImNatural;
+        DealerPoint = dealermanagerscript.i_points;
+        bool PlayerNatural = playermanagerscript.isImNatural;
         bool DealerNatural = dealermanagerscript.isImNatural;
         int judge = 0;
-        if(PlayerPoint!=DealerPoint)//同じポイントじゃないとき
+        if (PlayerPoint != DealerPoint)//同じポイントじゃないとき
         {
             if (PlayerPoint <= 21 && DealerPoint <= 21)
             {
@@ -69,5 +100,11 @@ public class GameManager_Nakano : MonoBehaviour
             judge = 2;
         }
         return judge;
+    }
+
+    private void Update()
+    {
+        playerTmp.text = $"<size=70>Youre WINs: </size><size=120>{playerWins}</size>";
+        dealerTmp.text = $"<size=70>Dealer WINs: </size><size=120>{dealerWins}</size>";
     }
 }

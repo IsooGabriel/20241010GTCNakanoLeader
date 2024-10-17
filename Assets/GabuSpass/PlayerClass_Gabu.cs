@@ -6,8 +6,8 @@ public class PlayerClass_Gabu : MonoBehaviour
 {
     #region　変数
 
-    protected List<int> _a_currentCards = new List<int>();                        // カードのint配列
-    protected List<CardScriptableObject> _a_scripts = new List<CardScriptableObject>();              // カードのscriptableObject配列
+    protected List<int> _a_currentCards = new List<int>();                                  // カードのint配列
+    protected List<CardScriptableObject> _a_scripts = new List<CardScriptableObject>();     // カードのscriptableObject配列
     public int i_points = 0;                                    // カードの合計
     public bool isIhasAce = false;                              // Aceもってるか
     public bool isImNatural = false;                            // Natural Black Jackである場合
@@ -141,4 +141,21 @@ public class PlayerClass_Gabu : MonoBehaviour
         }
     }
     #endregion
+
+    private void Start()
+    {
+        if (instanceClass == null)
+        {
+            instanceClass = FindObjectOfType<InstanceClass_Gabu>();
+        }
+
+        if (cardManager == null)
+        {
+            cardManager = instanceClass.cardManager;
+        }
+        if (turnManagare == null)
+        {
+            turnManagare = instanceClass.turnManager;
+        }
+    }
 }
